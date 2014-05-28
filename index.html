@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html ng-app="main-container-module">
+    <head>
+        <title>Razor Task Manager</title>
+        <link href="public/styles/global.css" rel="stylesheet" />
+        <link href="public/styles/bootstrap.min.css" rel="stylesheet">   
+        <link href="public/styles/bootstrap-theme.min.css" rel="stylesheet">
+        <link href="public/styles/bootstrap-responsive.min.css" rel="stylesheet">          
+    </head>
+    <body>
+
+        <!-- Wrap all page content here -->
+        <div id="wrap">
+            <div id="pageContent">
+                <!-- partial container -->
+                <div ng-view></div>
+            </div>               
+        </div>     
+
+        <!-- Footer -->
+        <div id="footer">
+          <div class="container">
+            <p class="muted credit text-right">
+                Razor Industries.
+            </p>
+          </div>
+        </div>
+
+
+        <!--
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
+        -->
+
+        <!-- frameworks -->
+        <script src="public/scripts/angular.js"></script>
+        <script src="public/scripts/jquery.min.js"></script>
+
+        <!-- Angular application -->
+        <script src="app/app.js"></script>
+        <script src="app/controllers/controllers.js"></script>
+        <script src="app/services/dataProvider.js"></script>
+
+        <!-- page scripts -->
+        <script src="public/scripts/task-page-scripts.js"></script>       
+        
+    </body>
+</html>

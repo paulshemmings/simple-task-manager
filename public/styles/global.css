@@ -1,0 +1,130 @@
+html,
+body {
+	height: 100%;
+	/* The html and body elements cannot have any padding or margin. */
+}
+
+/* Wrapper for page content to push down footer */
+#wrap {
+	min-height: 100%;
+	height: auto !important;
+	height: 100%;
+	/* Negative indent footer by it's height */
+	margin: 0 auto -60px;
+}
+
+/* Set the fixed height of the footer here */
+#push,
+#footer {
+	height: 60px;
+}
+#footer {
+	background-color: #f5f5f5;
+}
+
+/* Lastly, apply responsive CSS fixes as necessary */
+@media (max-width: 767px) {
+	#footer {
+	  margin-left: -20px;
+	  margin-right: -20px;
+	  padding-left: 20px;
+	  padding-right: 20px;
+	}
+}
+
+/* 
+ * Page
+ */
+
+#pageContent {
+	padding:50px;
+}
+
+.task-item {
+	background-color: #EEEEEE;
+	vertical-align:top;
+	border-bottom:solid 1px #ccc;
+	font-family: georgia;
+	padding:3px;
+	position:relative;	
+}
+
+.task-item > div.readwrite{
+	vertical-align:top;
+	display:inline-block;
+	background-color:#fff;
+	width:100%;
+	min-width: 200px;
+	min-height: 200px;
+}
+
+
+
+/* 
+ * standard 
+ */		
+
+button {
+	display:inline-block;
+	background-color: #F3F4F7;
+	color:#095a99;
+	border:solid 1px #C4CCE0;
+	padding:5px;
+	vertical-align:middle;
+	text-align:center;
+	cursor:pointer;
+	margin: 3px 0;
+}
+
+button:hover, button:active, button:focus
+{
+	color: #f60;
+}	
+
+.hidden { 
+	display:none;
+}	 
+
+.text-right {
+	text-align: right;
+}
+
+.roundedBox
+{
+	-webkit-box-shadow: #244766 5px 5px 10px;
+	-moz-box-shadow: #244766 10px 10px 10px;
+	box-shadow: #244766 10px 10px 10px;
+	
+	-webkit-border-radius: 12px;
+	-moz-border-radius: 12px;
+	border-radius: 12px;	
+}
+.raised
+{
+	border-bottom:solid 2px black;
+}
+
+.readonly {
+	-moz-user-modify: read-only;
+	-webkit-user-modify: read-only;
+}
+.readwrite {
+	-moz-user-modify: read-write;
+	-webkit-user-modify: read-write;
+}			
+
+.editableSection{
+	background-color:#DDDDDD;
+}
+
+.button{
+	display:inline-block;
+	background-color: #F3F4F7;
+	color:#095a99;
+	border:solid 1px #C4CCE0;
+	padding:5px;
+	vertical-align:middle;
+	text-align:center;
+	cursor:pointer;
+	margin: 3px 0;
+}

@@ -1,0 +1,52 @@
+<!-- example test entry form -->
+
+<table>
+	<thead>
+		<th><a href="" ng-click="orderPredicate = 'status'; orderReverse = !orderReverse">Status</a></th>
+		<th><a href="" ng-click="orderPredicate = 'name'; orderReverse = !orderReverse">Task</a></th>
+		<th><a href="" ng-click="orderPredicate = 'blockers'; orderReverse = !orderReverse">Blockers</a></th>
+		<th><a href="" ng-click="orderPredicate = 'solutions'; orderReverse = !orderReverse">Solutions</a></th>
+		<th></th>
+	</thead>	
+	<tbody>
+		<tr class='task-filter-row'>			
+			<td>
+				<input type="hidden" value="name" />
+			</td>
+			<td><input type="text" style="border:0" value="test task name" /></td>
+			<td><input type="text" style="border:0" value="" /></td>
+			<td><input type="text" style="border:0" value="" /></td>
+		</tr>
+		<tr class='task-row' data-task-id="12345" id="12345">
+			<td  class="task-status">
+				<input type="radio" name="task-status-12345" value="0" checked="checked" /> Completed </br>
+				<input type="radio" name="task-status-12345" value="1"  /> Blocked </br>
+				<input type="radio" name="task-status-12345" value="2"  /> Pending </br>
+				<input type="radio" name="task-status-12345" value="3"  /> Active </br>
+			</td>
+			<td class="task-name readwrite" contenteditable="true">Test Task Name</td>
+			<td class="task-blockers readwrite" contenteditable="true">Test Task Blocker</td>
+			<td class="task-solutions readwrite" contenteditable="true">Test Task Solution</td>
+			<td class="table-action-cell">
+				<button class="update-task">Update</button>
+			</td>
+		</tr>
+		<tr>
+			<td id="row-padding" colspan="10"/>
+		</tr>
+		<tr class='task-row' id="new-task-row">
+			<td id="task-status">
+				<input name="task-status-new" value="0" type="radio" /> Completed </br>
+				<input name="task-status-new" value="1" type="radio" /> Blocked </br>
+				<input name="task-status-new" value="2" type="radio" /> Pending </br>
+				<input name="task-status-new" value="3" type="radio" checked="checked" /> Active </br>
+			</td>				
+			<td class="task-name readwrite" contenteditable="true"></td>
+			<td class="task-blockers readwrite" contenteditable="true"></td>
+			<td class="task-solutions readwrite" contenteditable="true"></td>
+			<td class="table-action-cell">
+				<button class="update-task">Add</button>
+			</td>
+		</tr>
+	</tbody>
+</table>
