@@ -8,7 +8,7 @@ var util = require('util'),
     qs = require('querystring'),
     db = require( __dirname + '/database/database');
 
-var DEFAULT_PORT = 8000;
+var DEFAULT_PORT = 8100;
 
 function main(argv) {
   new HttpServer({
