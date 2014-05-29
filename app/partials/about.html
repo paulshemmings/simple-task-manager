@@ -1,0 +1,60 @@
+<h3>About Simple Task Manager</h3>
+<br/>
+<h4>Original Requirement</h4>
+<p>
+	Recently I found myself wanting a task manager with some specific features. I needed it to allow me to record if the task was blocked by an external resource, and if so what that external resource was. I also wanted to record *how* that blocker was finally resolved. That way I could re-use that information in the future to resolve other blockers.
+</P>
+<p>
+	Rather than looking around for an existing solution, I thought it would be more fun just to write one myself.
+</p>
+<br/>
+<h4>Technology Stack</h4>
+<p>
+	<h5>
+		<a href="https://angularjs.org/">AngularJS</a> |
+		Google's Client side MV* framework.
+	</h5>
+	Angular's implementation of two-way data-binding makes CRUD very simple.
+</p>
+<p>
+	<h5>
+		<a href="http://getbootstrap.com/">Bootstrap</a> |
+		Pre-build Front-end component library.
+	</h5>
+	I'm not a designer - color pallettes mean nothing to me. I didn't want to waste time trying to make the simple table look nice. Bootstrap comes with all the widgets you'd ever need.
+</p>
+<p>
+	<h5>
+		<a href="http://nodejs.org/">Node.JS</a> | 
+		Server side Javascript platform
+	</h5>
+	I love Node. It is very light weight, and very extensible. It also means I can write all my code in one language - which is a great plus. I'm not a huge fan of some of the more popular plugins though. So I decided against using Express.
+</p>
+<p>
+	<h5>
+		<a href="http://www.mongodb.com/">MongoDB</a> |
+		No-SQL document based database server.
+	</h5>
+	This is by far the easiest to use no-sql database server out there. It is very user-friendly. As I would only need to be persisting arrays of single objects, with no interdependencies, this would fit my requirements perfectly.
+</p>
+<p>
+	<h5>
+		<a href="http://mongoosejs.com/">Mongoose</a> |
+		MongoDB ORM for NodeJS.
+	</h5>
+	A very friendly ORM that plugs into Node with almost no effort. This plug-in makes using MongoDB wonderfully easy.
+</p>
+<p>
+	<h5>
+		<a href="http://jasmine.github.io/2.0/introduction.html">Jasmine</a> |
+		Testing framework.
+	</h5>
+	The best BDD test framework available.
+</p>
+<p>
+	<h5>
+		<a href="http://karma-runner.github.io/0.12/index.html">Karma</a> |
+		Test Runner.
+	</h5>
+	Yet another google product (like AngularJS), this makes running your tests simple.
+</p>
