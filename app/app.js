@@ -11,6 +11,11 @@ app.config(function ($routeProvider) {
             {
                 controller: 'AboutController',
                 templateUrl: '/app/partials/about.html'
-            })        
+            }) 
+		.when('/help',
+            {
+                controller: 'AboutController',
+                templateUrl: '/app/partials/help.html'
+            }) 
         .otherwise({ redirectTo: '/tasks' });
 });
