@@ -91,12 +91,26 @@ var TaskPageScripts = {
 		$(event.target).find(':input').focus();
 	},
 
+	handleToggleFilterRow : function(even) {
+		var filterRow = $('.task-filter-row'),
+			hidden = $(filterRow).hasClass('hidden');
+		filterRow.toggleClass('hidden', !hidden);			
+	},
+
+	handleToggleAddRow : function(even) {
+		var filterRow = $('#new-task-row'),
+			hidden = $(filterRow).hasClass('hidden');
+		filterRow.toggleClass('hidden', !hidden);			
+	},	
+
 	attachListeners : function() {
 		this.captureContentEditableChanges('#pageContent');
 		$('#pageContent').on('click', '.update-task', $.proxy(this.handlePersistTaskRequest, TaskPageScripts));
 		$('#pageContent').on('change', '.task-row [contenteditable]', $.proxy(this.handleTextChange, TaskPageScripts));
 		$('#pageContent').on('click', '.task-status :input[type="radio"]', $.proxy(this.handleTextChange, TaskPageScripts));
 		$('#pageContent').on('click', '.task-filter-row td', $.proxy(this.handleFilterFocus, TaskPageScripts));
+		$('#pageContent').on('click', '#toggle-filter', $.proxy(this.handleToggleFilterRow, TaskPageScripts));
+		$('#pageContent').on('click', '#toggle-add', $.proxy(this.handleToggleAddRow, TaskPageScripts));
 	}
 };
 

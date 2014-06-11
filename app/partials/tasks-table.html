@@ -8,11 +8,22 @@
 	tr.invalid {
 		color:red;
 	}
+	th a {
+		font-size: 24px;
+		font-weight: 400;		
+		font-family: 'Open Sans',sans-serif;
+		color: rgb(102, 102, 102);
+	}
 	th a.selected {
 		text-decoration: underline;
 	}
 	.task-filter-row :input {
 		width: 100%
+	}
+	.task-filter-row td:first-child {
+		font-size:0.6em;
+		padding: 10px 0;
+		margin:0;
 	}
 	.table-action-cell {
 		text-align: right;
@@ -22,10 +33,16 @@
 	}
 	.task-status, #new-task-status {
 		min-width:120px;
+		font-size:0.8em;
 	}
 	#new-task-row, .task-row {
+		/*
 	    background-color: #F3F4F7;
 	    border:solid 1px #C4CCE0;
+	    */
+	}
+	.task-row:hover {
+		background-color: #f2f2f2;	
 	}
 	#new-task-status {
 	}
@@ -42,17 +59,39 @@
 		<th><a href="" ng-click="orderPredicate = 'name'; orderReverse = !orderReverse">Task</a></th>
 		<th><a href="" ng-click="orderPredicate = 'blockers'; orderReverse = !orderReverse">Blockers</a></th>
 		<th><a href="" ng-click="orderPredicate = 'solutions'; orderReverse = !orderReverse">Solutions</a></th>
-		<th></th>
+		<th>
+			<span id="toggle-filter" class="icon-search"></span>
+			</br>
+			<span id="toggle-add" class="icon-add"></span>
+		</th>
 	</thead>
 	<tbody>
-		<tr class='task-filter-row'>			
+		<tr class='task-filter-row hidden'>			
 			<td>
+				<input type="radio" ng-model="filter.status" value="" ng-change="list()" /> All |
+				<input type="radio" ng-model="filter.status" value="1" ng-change="list()" /> B |
+				<input type="radio" ng-model="filter.status" value="2" ng-change="list()" /> P |
+				<input type="radio" ng-model="filter.status" value="3" ng-change="list()" /> A</br>				
 				<input type="hidden" ng-model="filter.hidden" value="{{filter.hidden}}" />
 			</td>
 			<td><input type="text" style="border:0" ng-model="filter.name" value="{{filter.name}}" ng-change="list()" /></td>
 			<td><input type="text" style="border:0" ng-model="filter.blockers" value="{{filter.blockers}}" ng-change="list()" /></td>
 			<td><input type="text" style="border:0" ng-model="filter.solutions" value="{{filter.solutions}}" ng-change="list()" /></td>
 		</tr>
+		<tr class='task-row hidden' id="new-task-row">
+			<td id="task-status">
+				<input name="task-status-new" value="0" type="radio" /> Completed </br>
+				<input name="task-status-new" value="1" type="radio" /> Blocked </br>
+				<input name="task-status-new" value="2" type="radio" /> Pending </br>
+				<input name="task-status-new" value="3" type="radio" checked="checked" /> Active </br>
+			</td>				
+			<td class="task-name readwrite" contenteditable="true"></td>
+			<td class="task-blockers readwrite" contenteditable="true"></td>
+			<td class="task-solutions readwrite" contenteditable="true"></td>
+			<td class="table-action-cell">
+				<button class="update-task">Add</button>
+			</td>
+		</tr>		
 		<tr class='task-row' data-task-id="{{task._id}}" ng-repeat="task in tasks | orderBy: orderPredicate:orderReverse">
 			<td  class="task-status">
 				<input type="radio" name="task-status-{{task._id}}" value="0" ng-checked="{{task.status == 0}}" /> Completed </br>
@@ -69,20 +108,6 @@
 		</tr>
 		<tr>
 			<td id="row-padding" colspan="10"/>
-		</tr>
-		<tr class='task-row' id="new-task-row">
-			<td id="task-status">
-				<input name="task-status-new" value="0" type="radio" /> Completed </br>
-				<input name="task-status-new" value="1" type="radio" /> Blocked </br>
-				<input name="task-status-new" value="2" type="radio" /> Pending </br>
-				<input name="task-status-new" value="3" type="radio" checked="checked" /> Active </br>
-			</td>				
-			<td class="task-name readwrite" contenteditable="true"></td>
-			<td class="task-blockers readwrite" contenteditable="true"></td>
-			<td class="task-solutions readwrite" contenteditable="true"></td>
-			<td class="table-action-cell">
-				<button class="update-task">Add</button>
-			</td>
 		</tr>
 	</tbody>
 </table>

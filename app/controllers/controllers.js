@@ -11,6 +11,10 @@ app.controller('TasksController', function($scope, dataProvider) {
 	}
 
 	$scope.list = function() {
+		if ($scope.filter.status && $scope.filter.status.length > 0) {
+			$scope.filter.status = parseInt($scope.filter.status);	
+		}
+		
 		dataProvider.getTasks($scope.filter, function(data) {
 			$scope.tasks = data.content;
 		});

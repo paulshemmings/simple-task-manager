@@ -1,6 +1,7 @@
 html,
 body {
 	height: 100%;
+	font-family: 'Open Sans',sans-serif;
 	/* The html and body elements cannot have any padding or margin. */
 }
 
@@ -25,7 +26,7 @@ body {
 
 #header {
 	height: 30px;
-	background-color: #C4CCE0;
+	background-color: #555;
 	border-bottom: 1px solid #EEE;	
 	position:fixed;
 	width: 100%;
@@ -49,6 +50,31 @@ body {
 	  padding-left: 20px;
 	  padding-right: 20px;
 	}
+}
+
+/* 
+ * Icons
+ */
+
+[class^="icon-"], [class*=" icon-"] {
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    *margin-right: .3em;
+    line-height: 14px;
+    vertical-align: text-top;
+    background-image: url("../img/glyphicons-halflings.png");
+    background-position: 14px 14px;
+    background-repeat: no-repeat;
+    margin-top: 1px;
+} 
+
+.icon-search {
+	background-position: -48px 0;
+}
+
+.icon-add {
+	background-position: -407px -97px;
 }
 
 /* 
