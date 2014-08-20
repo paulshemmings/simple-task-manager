@@ -10,7 +10,8 @@ app.controller('TreeNotesController', function($scope, dataProvider, noteDataPro
 	};
 
 	$scope.NotesView = {
-		Store : []
+		Store : [],
+		Selected : null
 	}	
 
 	function initialize() {
@@ -69,6 +70,17 @@ app.controller('TreeNotesController', function($scope, dataProvider, noteDataPro
 		$scope.NotesView.list($scope.TreeView.Selected.Path);
 	}
 
+	$scope.NotesView.select = function(note) {
+		// do nothing if already selected
+		if($scope.NotesView.Selected == note) return;
+
+		// select this note
+		$scope.NotesView.Selected = note;
+
+		// display the content of this note
+
+	}
+
 	$scope.TreeView.create = function() {
 		if($scope.TreeView.Selected.Node) {
 			$scope.TreeView.persist($scope.TreeView.Selected.Node, {
@@ -83,6 +95,7 @@ app.controller('TreeNotesController', function($scope, dataProvider, noteDataPro
 	}
 
 	$scope.NotesView.create = function() {
+		/*
 		if($scope.TreeView.Selected.Node) {
 			$scope.NotesView.persist({
 				name : 'new note',
@@ -93,19 +106,28 @@ app.controller('TreeNotesController', function($scope, dataProvider, noteDataPro
 					$scope.NotesView.list($scope.TreeView.Selected.Path);
 				}
 			});
-		}		
+		}
+		*/		
 	}	
 
-	$scope.TreeView.rename = function() {
+	$scope.TreeView.update = function() {
 		if($scope.TreeView.Selected.Node) {
 			var label = $scope.TreeView.Selected.Node,
 				parent = $scope.TreeView.Cache[label.parentId];
 
 			$scope.TreeView.persist(parent, label, function() {
-				console.log('label renamed');
+				console.log('label updated');
 			});
 		}
 	}
+
+	$scope.NotesView.update = function() {
+		if($scope.NotesView.Selected) {
+			$scope.NotesView.persist($scope.NotesView.Selected, function() {
+				console.log('note updated');
+			});
+		}
+	}	
 
 	$scope.TreeView.delete = function() {
 		if($scope.TreeView.Selected.Node) {
@@ -127,6 +149,14 @@ app.controller('TreeNotesController', function($scope, dataProvider, noteDataPro
 				}
 				// unselect
 				$scope.TreeView.Selected.Node = null;
+			});
+		}
+	}
+
+	$scope.NotesView.delete = function() {
+		if($scope.NotesView.Selected) {
+			noteDataProvider.deleteNote($scope.NotesView.Selected, function(response) {
+				console.log('note deleted');
 			});
 		}
 	}

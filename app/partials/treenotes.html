@@ -1,6 +1,6 @@
 <!-- Label tree node -->
 <style>
-  .node-name.selected {
+  .node-name.selected, .note-list-item.selected {
     font-weight: bold;
     font-style: italic;    
   }
@@ -20,11 +20,26 @@
     width:300px;
     display:inline-block;
   }
-  #tree-view-rhs {
+  #tree-view-lhs ul {
+    padding-left: 10px    
+  }
+
+  #notes-view-middle {
     padding:10px;
+    border-right: solid 1px #eee;
+    width:300px;    
     display:inline-block;
     vertical-align: top;
     position: relative;
+  }
+  #notes-view-middle ul {
+    padding:0;
+    list-style: none;
+  }
+  #note-content-editor {
+    padding:10px;
+    display:inline-block;
+    vertical-align: top;    
   }
 
   #notes-view-controls {
@@ -33,9 +48,7 @@
     left: 10px;
   }
 
-  #tree-view-lhs ul {
-    padding-left: 10px    
-  }
+
 
 </style>
 
@@ -55,12 +68,17 @@
 <!-- nodes list view -->
 
 <script type="text/ng-template"  id="notes_item_renderer.html">
-  {{data.name}}     
+  <div class="note-list-item" ng-click="NotesView.select(data)" ng-class="{selected: data == NotesView.Selected}">
+    {{data.name}}      
+  </div>
 </script>
 
 <!-- main page -->
 
 <div id="row">
+
+  <!-- labels list (lhs) -->
+
   <div id="tree-view-lhs">
     <h4><h4>Labels: {{TreeView.Selected.Path}}</h4>
     <!-- show the nodes -->    
@@ -70,23 +88,49 @@
     <!-- edit controls -->
     <div id="notes-view-controls" ng-show="TreeView.Selected.Node != null">
         <input type="text" ng-model="TreeView.Selected.Node.name">
-        <button ng-click="TreeView.rename()">Rename</button> 
+        <button ng-click="TreeView.update()">Update</button> 
         <button ng-click="TreeView.delete()" ng-show="TreeView.Selected.Node.nodes.length != 0">Delete</button> 
         <!--
         <button ng-click="labels.erase()">Erase</button> 
         -->
         <button ng-click="TreeView.Selected.Node = null">Unselect</button> 
         <input type="text" ng-model="newTreeLabel.name">
-        <button ng-click="TreeView.create()">Create</button>    
+        <button ng-click="TreeView.create()">Create</button>   
+        <span>&nbsp;</span>         
         <button ng-click="NotesView.create()">Create Note</button> 
+        <input type="text" ng-model="NotesView.Selected.name">
+        <button ng-click="NotesView.update()">Update Note</button> 
+        <button ng-click="NotesView.delete()">Delete</button> 
     </div>      
   </div>
 
-  <div id="tree-view-rhs">
-    <h4>Notes</h4>
+  <!-- notes list (middle) -->
 
-      <ul>
-        <li ng-repeat="data in NotesView.Store" ng-include="'notes_item_renderer.html'"></li>
-      </ul>
+  <div id="notes-view-middle">
+    <h4>Notes</h4>
+    <ul>
+      <li ng-repeat="data in NotesView.Store" ng-include="'notes_item_renderer.html'"></li>
+    </ul>
   </div>
+
+  <!-- note content (rhs) -->
+
+  <div id="note-content-editor">
+    <ul>
+      <li ng-repeat="label in NotesView.Selected.labels">
+          {{label}}
+      </li>
+    </ul>    
+    <div class="note-content readwrite" contenteditable="true">
+      {{NotesView.Selected.content}}
+    </div>
+  </div>  
+
+
+
+
 </div>
+
+
+
+

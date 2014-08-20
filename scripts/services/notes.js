@@ -11,7 +11,7 @@ function buildReply(success, content) {
 
 exports.all = function(req, res, path, content) {
 	util.puts('all Notes which contain label: ' + content);
-	var filter = { labels: {$in: [content] }};
+	var filter = {labels: {$in: [content] }};
 
 	Note.find(filter, function(err, notes) {
 		if(err) {
@@ -38,10 +38,12 @@ exports.persist = function(req, res, path, content) {
 		var noteDetails = JSON.parse(content);
 		var note = new	Note(noteDetails || {});
 		if (note._id) {
+			util.puts('updating existing note with id:' + note._id);
 			var upsertData = note.toObject();
 			delete upsertData._id;
-			Note.update({ _id : Note._id }, upsertData, {upsert: true}, handler);
+			Note.update({ _id : note._id }, upsertData, {upsert: true}, handler);
 		} else {
+			util.puts('adding a new note with name:' + note.name);
 			note.save(handler);	
 		}
 					
