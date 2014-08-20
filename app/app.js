@@ -2,11 +2,6 @@
 
 app.config(function ($routeProvider) {
     $routeProvider
-        .when('/notes',
-            {
-                controller: 'NotesController',
-                templateUrl: '/app/partials/notes.html'
-            })
         .when('/treenotes',
             {
                 controller: 'TreeNotesController',
