@@ -18,8 +18,15 @@ $(function() {
 		container.toggleClass('expanded', !expanded);	
 	};
 
+	function handleNoteContentChange(event) {
+		getElementScope('note-content-editor', function(scope) {
+			scope.NotesView.Selected.content = $('.note-content').text();
+		});
+	}
+
 	function attachListeners(self) {
 		$(document).on('click', '.node-name', $.proxy(labelSelectHandler, self));
+		$(document).on('change', '.note-content[contenteditable]', $.proxy(handleNoteContentChange, self));
 	};
 
 	// initialise();
