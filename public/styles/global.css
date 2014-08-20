@@ -67,6 +67,7 @@ body {
     background-position: 14px 14px;
     background-repeat: no-repeat;
     margin-top: 1px;
+    cursor: pointer;
 } 
 
 .icon-search {

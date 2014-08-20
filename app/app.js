@@ -1,7 +1,17 @@
-﻿var app = angular.module('main-container-module', []);
+﻿var app = angular.module('main-container-module', ['ng-context-menu']);
 
 app.config(function ($routeProvider) {
     $routeProvider
+        .when('/notes',
+            {
+                controller: 'NotesController',
+                templateUrl: '/app/partials/notes.html'
+            })
+        .when('/treenotes',
+            {
+                controller: 'TreeNotesController',
+                templateUrl: '/app/partials/treenotes.html'
+            })        
         .when('/tasks',
             {
                 controller: 'TasksController',

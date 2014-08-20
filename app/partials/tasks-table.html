@@ -35,11 +35,12 @@
 		min-width:120px;
 		font-size:0.8em;
 	}
-	#new-task-row, .task-row {
-		/*
-	    background-color: #F3F4F7;
-	    border:solid 1px #C4CCE0;
-	    */
+	#new-task-row {
+	    background-color: #FFE;
+	}
+	.task-filter-row input[type="text"]  {
+		background-color: #FFFFAA;
+		width: 95%
 	}
 	.task-row:hover {
 		background-color: #f2f2f2;	
@@ -74,9 +75,9 @@
 				<input type="radio" ng-model="filter.status" value="3" ng-change="list()" /> A</br>				
 				<input type="hidden" ng-model="filter.hidden" value="{{filter.hidden}}" />
 			</td>
-			<td><input type="text" style="border:0" ng-model="filter.name" value="{{filter.name}}" ng-change="list()" /></td>
-			<td><input type="text" style="border:0" ng-model="filter.blockers" value="{{filter.blockers}}" ng-change="list()" /></td>
-			<td><input type="text" style="border:0" ng-model="filter.solutions" value="{{filter.solutions}}" ng-change="list()" /></td>
+			<td><input type="text" ng-model="filter.name" value="{{filter.name}}" ng-change="list()" /></td>
+			<td><input type="text" ng-model="filter.blockers" value="{{filter.blockers}}" ng-change="list()" /></td>
+			<td><input type="text" ng-model="filter.solutions" value="{{filter.solutions}}" ng-change="list()" /></td>
 		</tr>
 		<tr class='task-row hidden' id="new-task-row">
 			<td id="task-status">

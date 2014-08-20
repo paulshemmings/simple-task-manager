@@ -1,0 +1,109 @@
+<!-- Labels Styles -->
+
+<style>
+	#notes-view ul {
+	    list-style: circle;
+      padding-left: 10px;      
+	}
+	#notes-view li {
+	    margin-left: 5px;
+	}
+  li.top-list-item {
+    display: block;
+  }
+  .label-node-name + ul.sub-list {
+      display:none;
+  }
+  .label-node-name.expanded + ul.sub-list {
+      display:block;
+  }    
+  #labelMenuWrapper #closeMenu {
+    width:100%;
+    text-align:right;
+    cursor: pointer;
+    padding:5px;
+  }
+	.label-node-name.selected {
+    font-weight: bold;
+    font-style: italic;
+	}
+	.position-fixed {
+		position: fixed;
+	}
+
+</style>
+
+<!-- Label tree node -->
+
+<script type="text/ng-template"  id="tree_item_renderer.html">
+  <!-- 
+   <div context-menu="onRightClick(data);" data="data" data-target="myMenu0">
+  -->
+  <div>
+    <div ng-click="labels.select(data)" class="label-node-name" ng-class="{selected: data == labels.selected}">
+      {{data.name}}      
+    </div>
+    <ul class='sub-list'>      
+        <li class="sub-list-item" ng-repeat="data in data.subLabels" ng-include="'tree_item_renderer.html'"></li>
+    </ul>    
+	</div>    
+
+</script>
+
+<!-- Label Tree -->
+
+<div id="notes-view">
+  <!-- controls, allow them to add below, delete, remove selected node -->
+  <!-- only enable when node is selected -->
+  <h4>Controls</h4>
+  <div id="notes-view-controls">
+      <input type="text" ng-model="labels.selected.name">
+      <button ng-click="labels.rename()">Rename</button> 
+      <button ng-click="labels.delete()">Delete</button> 
+      <!--
+      <button ng-click="labels.erase()">Erase</button> 
+      -->
+      <button ng-click="labels.selected = null">Unselect</button> 
+      <br/><br/>
+      <input type="text" ng-model="newLabel.name">
+      <button ng-click="labels.create(data)">Create</button>    
+      <br/>
+      <button ng-click="labels.delete(data)" ng-show="data.nodes.length > 0">
+        Clear
+      </button>      
+  </div>  
+  <!-- show the nodes -->
+  <h4>Labels</h4>
+	<ul class="top-list">   
+	    <li class="top-list-item" ng-repeat="data in labels.top" ng-include="'tree_item_renderer.html'"></li>
+	</ul>
+</div>
+
+ <!-- context menu -->
+
+  <div id="myMenu0" class="dropdown position-fixed" style="top: 227px; left: 554px;">
+    <div id="labelMenuWrapper" role="menu" class="dropdown-menu">
+      <div id="closeMenu">x</div>
+      <ul aria-labelledby="dropdownMenu2">
+        <li>
+        	<input type="text" ng-model="sublabel.name">
+          <a ng-click="addLabel()" tabindex="1" role="menuitem" class="pointer ng-binding">Add label</a>
+        </li>
+        <li>
+          <a ng-click="panel.highlight = false" tabindex="2" role="menuitem" class="pointer ng-binding">Deselect Panel  1</a>
+        </li>
+        <li>
+          <a ng-click="panel.expanded = true" tabindex="3" role="menuitem" class="pointer ng-binding">Expand Panel 1</a>
+        </li>
+        <li>
+          <a ng-click="panel.expanded = false" tabindex="4" role="menuitem" class="pointer ng-binding">Contract Panel 1</a>
+        </li>
+        <li>
+          <a ng-click="addPanel()" tabindex="5" role="menuitem" class="pointer">Add a panel</a>
+        </li>
+        <li>
+          <a tabindex="-1" role="menuitem" href="https://github.com/ianwalter/ng-context-menu">ng-context-menu on GitHub</a>
+        </li>
+      </ul>
+    </div>
+  </div>

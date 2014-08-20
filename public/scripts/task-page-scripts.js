@@ -100,7 +100,10 @@ var TaskPageScripts = {
 	handleToggleAddRow : function(even) {
 		var filterRow = $('#new-task-row'),
 			hidden = $(filterRow).hasClass('hidden');
-		filterRow.toggleClass('hidden', !hidden);			
+		filterRow.toggleClass('hidden', !hidden);	
+		if(!hidden) {
+			$(filterRow).find('td.task-name').click();
+		}		
 	},	
 
 	attachListeners : function() {
