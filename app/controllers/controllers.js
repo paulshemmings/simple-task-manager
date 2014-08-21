@@ -4,7 +4,7 @@ app.controller('TreeNotesController', function($scope, dataProvider, noteDataPro
 		Cache : {},
 		Store : [],
 		Selected : {
-			Node : [],
+			Node : null,
 			Path : ""
 		}
 	};
@@ -57,6 +57,9 @@ app.controller('TreeNotesController', function($scope, dataProvider, noteDataPro
 		// select this node
 		$scope.TreeView.Selected.Node = label;
 
+		// unselect any selected note 
+		// $scope.NotesView.Selected = null;
+
 		// clear the nodes
 		label.nodes.length = 0;
 
@@ -76,26 +79,53 @@ app.controller('TreeNotesController', function($scope, dataProvider, noteDataPro
 
 		// select this note
 		$scope.NotesView.Selected = note;
+	}
 
-		// display the content of this note
+	$scope.NotesView.addLabel = function() {
+		var label = $scope.TreeView.Selected,
+			note = $scope.NotesView.Selected;
 
+		if(label.Path.length > 0) {		
+			if (note) {
+				if ($.inArray(label.Path, note.labels) -1) {
+					note.labels.push(label.Path);
+					$scope.NotesView.persist(note, function(response) {
+						if(response.success) {
+							console.log('added label to note');
+						}
+					});				
+				}
+			}
+		}
+	}
+
+	$scope.NotesView.removeLabel = function(label) {
+		var note = $scope.NotesView.Selected;
+		if (note) {
+			if ($.inArray(label.Path, note.labels) != -1) {
+				note.labels.splice( $.inArray(label, note.labels), 1 );
+				$scope.NotesView.persist(note, function(response) {
+					if(response.success) {
+						console.log('removed label from note');
+					}
+				});				
+			}
+		}
 	}
 
 	$scope.TreeView.create = function() {
 		if($scope.TreeView.Selected.Node) {
 			$scope.TreeView.persist($scope.TreeView.Selected.Node, {
-				name : $scope.newTreeLabel.name
+				name : "[new label]"
 			}, function(response) {
 				if(response.success) {
 					addTreeLabelToModel(response.content);
-					$scope.newTreeLabel.name = "";
 				}
 			});
 		}		
 	}
 
 	$scope.NotesView.create = function() {
-		/*
 		if($scope.TreeView.Selected.Node) {
 			$scope.NotesView.persist({
 				name : 'new note',
@@ -107,7 +137,6 @@ app.controller('TreeNotesController', function($scope, dataProvider, noteDataPro
 				}
 			});
 		}
-		*/		
 	}	
 
 	$scope.TreeView.update = function() {
@@ -157,6 +186,12 @@ app.controller('TreeNotesController', function($scope, dataProvider, noteDataPro
 		if($scope.NotesView.Selected) {
 			noteDataProvider.deleteNote($scope.NotesView.Selected, function(response) {
 				console.log('note deleted');
+
+				// remove from the notes list
+				$scope.NotesView.Store.splice( $.inArray($scope.NotesView.Selected, $scope.NotesView.Store), 1 );
+
+				// unselect
+				$scope.NotesView.Selected = null;
 			});
 		}
 	}
@@ -204,7 +239,12 @@ app.controller('TreeNotesController', function($scope, dataProvider, noteDataPro
 
 	$scope.NotesView.persist = function(note, callback) {
 		console.log("add note", note);
-		noteDataProvider.persistNote(note, function(response) {
+		noteDataProvider.persistNote({
+				_id: note._id,
+				name: note.name,
+				labels: note.labels,
+				content: note.content
+		}, function(response) {
 			callback(response);
 		});
 	};	

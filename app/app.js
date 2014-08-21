@@ -1,4 +1,4 @@
-﻿var app = angular.module('main-container-module', ['ng-context-menu']);
+﻿var app = angular.module('main-container-module', []);
 
 app.config(function ($routeProvider) {
     $routeProvider

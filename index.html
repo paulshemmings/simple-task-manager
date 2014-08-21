@@ -14,7 +14,7 @@
             <a href="/index.html#/about">About</a> |
             <a href="/index.html#/help">Help</a> |
             <a href="/index.html#/tasks">Tasks</a> |
-            <a href="/index.html#/notes">Notes</a> |
+            <a href="/index.html#/treenotes">Notes</a> |
             <a href="/index.html#/export">Export</a> |
             Simple Task Manager
         </div>
@@ -41,17 +41,26 @@
         <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
         -->
 
-        <!-- frameworks -->       
+        <!-- frameworks -->  
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1/jquery-ui.min.js"></script>
+        <script src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
         <script src="public/scripts/angular.js"></script>
+
+<!--
+        <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.0.4/angular.min.js">    
         <script src="public/scripts/jquery.min.js"></script>
+-->        
         
         <!-- Angular application -->
         <script src="app/app.js"></script>
         <script src="app/controllers/controllers.js"></script>
         <script src="app/services/dataProvider.js"></script>
         <script src="app/services/notesDataProvider.js"></script>
-        <script src="app/modules/ng-context-menu.js"></script>
-
+<!--        
+        <script src="app/modules/ng-context-menu.js"></script>        
+        <script src="app/directives/angular-dragdrop.js"></script>
+-->
         <!-- page scripts  - TODO move into partials -->
         <script src="public/scripts/task-page-scripts.js"></script>       
         <script src="public/scripts/notes-page-scripts.js"></script>       
