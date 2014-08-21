@@ -87,7 +87,7 @@ app.controller('TreeNotesController', function($scope, dataProvider, noteDataPro
 
 		if(label.Path.length > 0) {		
 			if (note) {
-				if ($.inArray(label.Path, note.labels) -1) {
+				if ($.inArray(label.Path, note.labels) == -1) {
 					note.labels.push(label.Path);
 					$scope.NotesView.persist(note, function(response) {
 						if(response.success) {
@@ -102,7 +102,7 @@ app.controller('TreeNotesController', function($scope, dataProvider, noteDataPro
 	$scope.NotesView.removeLabel = function(label) {
 		var note = $scope.NotesView.Selected;
 		if (note) {
-			if ($.inArray(label.Path, note.labels) != -1) {
+			if ($.inArray(label, note.labels) != -1) {
 				note.labels.splice( $.inArray(label, note.labels), 1 );
 				$scope.NotesView.persist(note, function(response) {
 					if(response.success) {
